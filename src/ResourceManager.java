@@ -16,10 +16,8 @@ public class ResourceManager {
             return imageCache.get(name);
         }
         try {
-            // Try loading from classpath first (standard for JARs)
             URL url = ResourceManager.class.getResource("/resources/" + name);
             if (url == null) {
-                // Fallback to file system for IDE usage if classpath fails
                 File file = new File("src/resources/" + name);
                 if (file.exists()) {
                     url = file.toURI().toURL();
@@ -39,7 +37,6 @@ public class ResourceManager {
         return null;
     }
 
-    // Helper to get scaled image icon
     public static ImageIcon getScaledImage(String name, int width, int height) {
         ImageIcon icon = getImage(name);
         if (icon != null) {

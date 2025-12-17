@@ -26,9 +26,7 @@ public class Board {
             int x = ThreadLocalRandom.current().nextInt(SIZE);
             int y = ThreadLocalRandom.current().nextInt(SIZE);
 
-            // Jeśli pole jest puste, wstawiamy tam punkty (1-10)
             if (!grid[x][y].hasTreasure()) {
-                // Generuje punkty od 1 do 10
                 int points = ThreadLocalRandom.current().nextInt(10) + 1;
                 grid[x][y].setTreasure(points);
                 placed++;
@@ -36,10 +34,9 @@ public class Board {
         }
     }
 
-    // Metoda obsługująca strzał
     public int shoot(int x, int y) {
         if (x < 0 || x >= SIZE || y < 0 || y >= SIZE) {
-            return -1; // Kod błędu
+            return -1;
         }
 
         Field target = grid[x][y];

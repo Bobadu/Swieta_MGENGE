@@ -1,6 +1,6 @@
 public class Field {
-    private int value; // Wartość punktowa (0 oznacza brak celu)
-    private boolean isRevealed; // Czy pole zostało już odkryte?
+    private int value;
+    private boolean isRevealed;
 
     public Field() {
         this.value = 0;

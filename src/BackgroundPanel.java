@@ -17,12 +17,10 @@ public class BackgroundPanel extends JPanel implements ActionListener {
         this.snowFlakes = new ArrayList<>();
         this.random = new Random();
         
-        // Generate initial snowflakes
         for (int i = 0; i < 100; i++) {
             snowFlakes.add(new SnowFlake(random.nextInt(800), random.nextInt(600)));
         }
 
-        // Timer for animation (approx 60 FPS)
         timer = new Timer(16, this);
         timer.start();
     }
@@ -30,7 +28,6 @@ public class BackgroundPanel extends JPanel implements ActionListener {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // Draw background
         if (backgroundImage != null) {
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
         } else {
@@ -38,7 +35,6 @@ public class BackgroundPanel extends JPanel implements ActionListener {
             g.fillRect(0, 0, getWidth(), getHeight());
         }
 
-        // Draw snow
         g.setColor(Color.WHITE);
         for (SnowFlake flake : snowFlakes) {
             g.fillOval(flake.x, flake.y, flake.size, flake.size);
@@ -49,9 +45,8 @@ public class BackgroundPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for (SnowFlake flake : snowFlakes) {
             flake.y += flake.speed;
-            flake.x += Math.sin(flake.y * 0.05) * 1; // Gentle swaying
+            flake.x += Math.sin(flake.y * 0.05) * 1;
 
-            // Reset if goes off screen
             if (flake.y > getHeight()) {
                 flake.y = -10;
                 flake.x = random.nextInt(getWidth());

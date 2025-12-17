@@ -16,21 +16,18 @@ public class GameWindow extends JFrame implements ActionListener {
         super("Number Shooter Game - Christmas Edition 🎄");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900, 800);
-        setLocationRelativeTo(null); // Center the window
+        setLocationRelativeTo(null);
         
-        // Load custom cursor
         ImageIcon cursorIcon = ResourceManager.getScaledImage("cursor_target.png", 32, 32);
         if (cursorIcon != null) {
             Toolkit toolkit = Toolkit.getDefaultToolkit();
-            Point hotSpot = new Point(16, 16); // Center of 32x32
+            Point hotSpot = new Point(16, 16);
             Cursor cursor = toolkit.createCustomCursor(cursorIcon.getImage(), hotSpot, "Target");
             setCursor(cursor);
         }
 
         initializeGame();
 
-        // Start Music and Sound AFTER names are entered
-        // Play sound first as it's likely smaller/faster to load, ensuring immediate feedback
         ResourceManager.playSound("ho_ho_ho.wav");
         ResourceManager.loopMusic("bg_music.wav");
 
@@ -52,11 +49,9 @@ public class GameWindow extends JFrame implements ActionListener {
     }
 
     private void setupUI() {
-        // Load background image
         ImageIcon bgIcon = ResourceManager.getImage("background.png");
         Image bgImage = (bgIcon != null) ? bgIcon.getImage() : null;
 
-        // Use BackgroundPanel as the main container
         BackgroundPanel backgroundPanel = new BackgroundPanel(bgImage);
         backgroundPanel.setLayout(new BorderLayout());
         setContentPane(backgroundPanel);
@@ -64,12 +59,10 @@ public class GameWindow extends JFrame implements ActionListener {
         scorePanel = new ScorePanel();
         add(scorePanel, BorderLayout.NORTH);
 
-        // Add some padding around the game grid
         JPanel gridContainer = new JPanel(new GridBagLayout());
         gridContainer.setOpaque(false);
         
         gamePanel = new GamePanel(board.getSize(), this);
-        // Make the grid fill a reasonable area but not edge-to-edge
         gamePanel.setPreferredSize(new Dimension(600, 600));
         
         gridContainer.add(gamePanel);
@@ -93,8 +86,6 @@ public class GameWindow extends JFrame implements ActionListener {
         if (pointsScored != -1) { 
             gamePanel.updateButton(row, col, pointsScored);
             if (pointsScored > 0) {
-                // Optionally show a small popup or just let the sound/visuals speak
-                // JOptionPane.showMessageDialog(this, "TRAFIENIE! " + pointsScored + " pkt!", "Ho Ho Ho!", JOptionPane.INFORMATION_MESSAGE);
                 currentPlayer.addPoints(pointsScored);
             }
             

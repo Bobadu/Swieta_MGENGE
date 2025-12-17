@@ -8,7 +8,7 @@ public class ScorePanel extends JPanel {
 
     public ScorePanel() {
         setLayout(new FlowLayout(FlowLayout.CENTER, 30, 15));
-        setOpaque(false); // Make transparent so background shows
+        setOpaque(false);
 
         player1ScoreLabel = createFestiveLabel("Gracz 1: 0 pkt");
         add(player1ScoreLabel);
@@ -17,7 +17,7 @@ public class ScorePanel extends JPanel {
         add(player2ScoreLabel);
 
         turnLabel = createFestiveLabel("Tura: ");
-        turnLabel.setForeground(new Color(255, 215, 0)); // Gold for turn
+        turnLabel.setForeground(new Color(255, 215, 0));
         add(turnLabel);
     }
 
@@ -25,8 +25,6 @@ public class ScorePanel extends JPanel {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 22));
         label.setForeground(Color.WHITE);
-        // Add a slight shadow effect by subclassing or just keeping it simple for now
-        // Simple white text on dark background usually works well
         return label;
     }
 
